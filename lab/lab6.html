@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Animation</title>
+    <link rel="stylesheet" href="../CSS/styles6.css">
+</head>
+<body>
+    <div class="animation-container">
+        <!-- Відео з анімацією покемона -->
+        <video class="flying-pokemon" autoplay loop muted>
+            <source src="https://i.gifer.com/17xr.mp4" type="video/mp4">
+            Ваш браузер не підтримує відео.
+        </video>
+
+        <!-- Фон з рухомою травою -->
+        <div class="background"></div>
+
+        <!-- Покемони -->
+        <div class="pokemon" id="pokemon1" onclick="catchPokemon('pokemon1')">
+            <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/raichu.gif" alt="Raichu">
+        </div>
+        <div class="pokemon" id="pokemon2" onclick="catchPokemon('pokemon2')">
+            <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/flareon.gif" alt="Flareon">
+        </div>
+        <div class="pokemon" id="pokemon3" onclick="catchPokemon('pokemon3')">
+            <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/lapras.gif" alt="Lapras">
+        </div>
+
+        <!-- Повідомлення про спійманого покемона -->
+        <div class="catch-message" id="catchMessage"></div>
+    </div>
+
+    <script>
+        // Функція для обробки події "ловити покемона"
+        function catchPokemon(pokemonId) {
+            const pokemon = document.getElementById(pokemonId);
+            const catchMessage = document.getElementById('catchMessage');
+
+            // Додаємо анімацію "ловлі" покемона
+            pokemon.style.animation = 'catchPokemonAnimation 1s forwards';
+
+            // Затримка для анімації
+            setTimeout(() => {
+                // Заміна зображення покемона на іконку "спіймано"
+                pokemon.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/188/188918.png" alt="Caught!">';
+
+                // Показуємо повідомлення, що покемона спіймано
+                catchMessage.textContent = `You caught ${capitalize(pokemonId)}!`;
+                catchMessage.style.display = 'block';
+
+                // Відновлюємо початкове зображення покемона через 3 секунди
+                setTimeout(() => {
+                    const pokemonImage = getPokemonImage(pokemonId);
+                    pokemon.innerHTML = `<img src="${pokemonImage}" alt="${capitalize(pokemonId)}">`;
+                    catchMessage.style.display = 'none';
+                    pokemon.style.animation = ''; // Відключаємо анімацію
+                }, 3000);
+            }, 1000); // Час на анімацію
+        }
+
+        // Функція для отримання зображення покемона
+        function getPokemonImage(pokemonId) {
+            const images = {
+                pokemon1: "https://img.pokemondb.net/sprites/black-white/anim/normal/raichu.gif",
+                pokemon2: "https://img.pokemondb.net/sprites/black-white/anim/normal/flareon.gif",
+                pokemon3: "https://img.pokemondb.net/sprites/black-white/anim/normal/lapras.gif"
+            };
+            return images[pokemonId]; // Повертаємо відповідне зображення покемона
+        }
+
+        // Функція для зміни першої літери на велику
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+    </script>
+</body>
+</html>

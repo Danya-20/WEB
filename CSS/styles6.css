@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #87CEEB; /* Світло-блакитний фон */
+  overflow: hidden;
+}
+
+.animation-container {
+  position: relative;
+  width: 90%;
+  height: 60%;
+  border: 2px solid #333;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #87CEEB, #4CAF50 70%, #3e8e41);
+}
+
+/* Відео з анімацією */
+.flying-animation {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 0,5; /* Встановлює відео на передній план */
+  pointer-events: none; /* Забороняє взаємодію з відео */
+  opacity: 0.7; /* Невелика прозорість для кращого вигляду */
+}
+
+/* Фон із рухомою травою */
+.background {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  background: url('https://cdn.pixabay.com/photo/2017/02/24/00/54/grass-2093762_960_720.png') repeat-x;
+  background-size: contain;
+  animation: moveLawn 8s linear infinite;
+}
+
+/* Покемони */
+.pokemon {
+  position: absolute;
+  bottom: 30%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  animation: runPokemon 5s linear infinite;
+}
+
+#pokemon1 {
+  left: 10%;
+  animation-delay: 0s;
+}
+
+#pokemon2 {
+  left: 50%;
+  animation-delay: 2s;
+}
+
+#pokemon3 {
+  left: 80%;
+  animation-delay: 4s;
+}
+
+.catch-message {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  display: none;
+}
+
+/* Анімація руху трави */
+@keyframes moveLawn {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* Анімація покемонів */
+@keyframes runPokemon {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-20px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Анімація покебола */
+@keyframes catchPokemonAnimation {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(0.5);
+  }
+  100% {
+    transform: translateX(-50%) scale(0) translateY(200px);
+  }
+}
+
+/* Зображення покебола, що замінює покемона */
+.pokemon img {
+  max-width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.pokemon .caught img {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+}

@@ -1,0 +1,53 @@
+/* Загальні стилі */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #4b0082;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Таблиця стилі */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #4b0082;
+    color: white;
+    font-weight: bold;
+}
+
+td.subject {
+    background-color: #e6ffe6; /* Світло-зелений фон */
+    color: #008000; /* Темно-зелений текст */
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
